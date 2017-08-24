@@ -9,7 +9,7 @@ from config import Config
 
 
 gl = Gitlab(Config.gitlab_url, Config.gitlab_token)
-project = gl.projects.get('tsalzmann/gl-test-project')
+project = gl.projects.get('drewag/sap-mcf')
 
 # csv reference:
 # ticketnr - [0]
@@ -55,7 +55,7 @@ def rowToIssue(row):
 
 def convertCSV():
     # Read in csv
-    with open('test_data.csv') as csvFile:
+    with open('prio4.csv') as csvFile:
         print('Reading csv file...')
         readCSV = csv.reader(csvFile, delimiter=',')
 
