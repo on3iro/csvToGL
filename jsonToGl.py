@@ -9,7 +9,7 @@ from config import Config
 
 
 gl = Gitlab(Config.gitlab_url, Config.gitlab_token)
-project = gl.projects.get('drewag/sap-mcf')
+project = gl.projects.get('tsalzmann/gl-test-project')
 
 def issue_to_pm(issue):
     regex = r'^PM-\d+-\d+'
@@ -56,7 +56,7 @@ def create_issue(ticket):
         ]
     }
 
-    project.issues.create(issue)
+    #  project.issues.create(issue)
 
 def convertJSON():
     existing_issues = project.issues.list(all=True)
@@ -66,6 +66,8 @@ def convertJSON():
         data = json.load(file)
         new_issues = list(filter(
             lambda issue: get_new_issues(issue, existing_pms), data))
+
+        print(len(new_issues), len(existing_issues))
 
         for issue in new_issues:
             print('Creating issue for: {}'.format(issue['id']))
